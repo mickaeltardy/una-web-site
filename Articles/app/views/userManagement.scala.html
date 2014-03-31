@@ -1,0 +1,83 @@
+@(listUser : List[User])
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UserMan</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    <link rel="icon" type="image/png" href="@routes.Assets.at("images/options.png")">
+    <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javacript"></script>
+	<script>  
+function toggleNewUser(){      
+  if(document.getElementById("new_user").style.display == "none"){  
+ 	 document.getElementById("new_user").style.display = "block";  
+  } else {  
+  	  document.getElementById("new_user").style.display = "none";  
+  }  
+} 
+	</script>
+  </head>
+  <body>
+    <header>
+       <a id="HomeLink" href="/UNA">Home Page</a>       	
+     </header>
+     <h1>UserMan</h1>  
+     <h2 id="homeTitle">User List</h1>  
+     <table>
+     	<tbody>
+     	   <tr>
+     	   	<th>User #</th>
+     	   	<th>User Name</th>
+     	   	<th>User Age</th>
+			<th>User Nationality</th>
+			<th>User Login</th>
+			<th>User passw</th>
+			<th>User role</th>
+			<th>Action</th>
+     	   </tr>
+     	   @for(user <- listUser){
+     	   <tr>
+     	   	<td>@user.id</td><td>@user.name</td><td>@user.age</td><td>@user.nationality</td><td>@user.login</td><td>@user.passw</td><td>@user.role</td>
+     	   	<td>
+     	   	   <form action="@routes.Application.removeUser(user.id)"method="POST">
+     	   	     <button type="submit">Remove User</button>
+     	   	   </form>
+     	   	</td>
+     	   </tr>
+     	   }
+     	</tbody>
+     </table>
+     
+   <p>
+      <button onClick="toggleNewUser()">Add  New  User</button>  
+   </p>
+   <div  id="new_user"  style="display:none">  
+     <h2>Adding  new  user</h2>  
+     <form action="/userMan" method="POST">
+        <table>  
+      	  <tbody>  
+      	  <tr>  
+      	     <th>User  Name</th>
+			 <th>User  Age</th>
+			 <th>User  Nationality</th>
+			 <th>User  Login</th>
+			 <th>User  Passw</th>
+			 <th>User  Role</th>
+      	  </tr>  
+      	  <tr>  
+      	     <td><input  type="text"  size="20"  name="name"  value=""></td>
+			 <td><input  type="text"  size="20"  name="age"  value=""></td>
+			 <td><input  type="text"  size="20"  name="nationality"  value=""></td>
+			 <td><input  type="text"  size="20"  name="login"  value=""></td>
+			 <td><input  type="text"  size="20"  name="passw"  value=""></td>
+			 <td><input  type="text"  size="20"  name="role"  value=""></td>
+      	  </tr>
+      	  <tr>
+      	     <td><button  type="submit">Insert  User</button>  </td>  
+      	  </tr>
+          </tbody>  
+        </table>
+     </form>
+   </div>  
+  </body>
+</html>
