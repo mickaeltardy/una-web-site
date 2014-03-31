@@ -1,0 +1,16 @@
+@(listeArticles : List[Article])
+@mainTemplate("Articles"){
+
+	<h1>Articles Manager</h1>
+	<dl>
+		<a id"HomeLink" href="/UNA">Home Page</a>
+	</dl>
+	<dl>
+		<a id"LoginLink" href="authenticate">Login</a>
+	</dl>
+	
+	@for(article <- listeArticles){
+	@articlesTemplate(article)
+	}
+	
+}

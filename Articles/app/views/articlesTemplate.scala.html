@@ -1,0 +1,17 @@
+@(article: Article)
+<html>
+	<h2 id="articleHeader" class="articleHeader">@article.name, @article.author.name, @article.publicationDate</h2>
+	
+	<br />
+	
+	<p id="articleContent" class="articleContent">
+		@article.content
+	</p>
+	
+	<br />
+	
+	<p id="articleStatus" class="articleStatus">
+		@article.status
+	</p>
+	
+</html>
