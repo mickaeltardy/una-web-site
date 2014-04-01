@@ -21,3 +21,5 @@ GET		/userManagement		controllers.Application.userManager()
 POST	/userMan			controllers.Application.insertUser()
 
 POST	/userMan/:id/		controllers.Application.removeUser(id: String)
+
+POST	/authentication		controllers.Application.authenticate()

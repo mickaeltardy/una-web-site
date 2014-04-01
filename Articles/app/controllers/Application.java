@@ -3,9 +3,7 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import play.data.*;
-
 import views.html.*;
-
 import models.*;
 
 public class Application extends Controller {
@@ -18,15 +16,36 @@ public class Application extends Controller {
     	return ok(show.render("Articles","Coucou"));
     }
     
+    
+  //Displays the front page
+    public static Result frontPage(){
+    	return ok(frontPage.render());
+    }
+    
+    
+    /* Authentication Management
+     * 
+     */
+    
     //Displays authentication page
     public static Result authenticationPage(){
     	return ok(authenticationPage.render());
     }
     
-    //Displays the front page
-    public static Result frontPage(){
-    	return ok(frontPage.render());
-    }
+    //Authentication method
+    public static Result authenticate(){  
+		Form<User> userForm = Form.form(User.class).bindFromRequest(); 
+		if(!userForm.hasErrors()){
+			session().clear();  
+			session("login", userForm.get().login);  
+            return redirect(routes.Application.frontPage());
+        }
+		else{
+			return badRequest(authenticationPage.render());
+		}
+	}
+    
+    
     
     //Displays Article Manager (Temporary)
     public static Result articlesManager(){
