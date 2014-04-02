@@ -1,12 +1,9 @@
-@(listeArticles : List[Article], logedIn : Boolean)
+@(listeArticles : List[Article])(logedIn : Boolean)
 @mainTemplate("Articles")(logedIn){
 
 	<h1>Articles Manager</h1>
 	<dl>
 		<a id"HomeLink" href="/UNA">Home Page</a>
-	</dl>
-	<dl>
-		<a id"LoginLink" href="authenticate">Login</a>
 	</dl>
 	
 	@for(article <- listeArticles){

@@ -8,29 +8,34 @@
     <link rel="icon" type="image/png" href="@routes.Assets.at("images/options.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javacript"></script>
 	<script>
-		function Log(logedIn){
+		function display(logedIn){
+		
+		<!-- This function allow to display either only the login link or both logout link and articles manager link -->
+		
 		if(logedIn){
 			document.getElementById("LoginLink").href = "logout";
 			document.getElementById("LoginLink").innerHTML = "Logout";
 			document.getElementById("LoginLink").id="LogoutLink";
 			document.getElementById("LogoutLink").style.display="block";
+			document.getElementById("ArticlesLink").style.display="block";
 		}
 		else{
-			document.getElementById("LoginLink").href = "authenticate";
-			document.getElementById("LoginLink").innerHTML = "Login";
 			document.getElementById("LoginLink").style.display="block";
 		}
 		}
 	</script>
   </head>
-  <body onload="Log(@logedIn)">
+  <body onload="display(@logedIn)">
 	
 	<!-- Top Banner -->
 	
 	<!-- Menus -->
-	<p>
-		<a id="LoginLink" style="display:none">Login</a>
-	</p>
+	<dl>
+		<a id="LoginLink" href="authenticate" style="display:none">Login</a>
+	</dl>
+	<dl>
+		<a id="ArticlesLink" href="articles" style="display:none">Your Articles</a>
+	</dl>
 	
     @content
 	
