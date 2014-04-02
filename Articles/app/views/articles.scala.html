@@ -1,5 +1,5 @@
-@(listeArticles : List[Article])
-@mainTemplate("Articles"){
+@(listeArticles : List[Article], logedIn : Boolean)
+@mainTemplate("Articles")(logedIn){
 
 	<h1>Articles Manager</h1>
 	<dl>

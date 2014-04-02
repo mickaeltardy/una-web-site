@@ -18,9 +18,9 @@ public class Application extends Controller {
     
     
   //Displays the front page
-    public static Result frontPage(){
-    	return ok(frontPage.render());
-    }
+    public static Result frontPage(){  
+		 return ok(frontPage.render(sessionExists()));
+	 }
     
     
     /* Authentication Management
@@ -34,24 +34,47 @@ public class Application extends Controller {
     
     //Authentication method
     public static Result authenticate(){  
-		Form<User> userForm = Form.form(User.class).bindFromRequest(); 
-		if(!userForm.hasErrors()){
-			session().clear();  
-			session("login", userForm.get().login);  
-            return redirect(routes.Application.frontPage());
-        }
+    	
+    	Control control = new Control(); // Will allow to check login and password
+    	
+    	Form<User> userForm = Form.form(User.class).bindFromRequest(); // Get the entry
+    	
+    	if(!userForm.hasErrors()){// If the entry has no errors
+    		
+			if(control.authenticate(userForm.get())){// Check login and password
+				session().clear();  
+				session("login", userForm.get().login);  
+				return redirect(routes.Application.frontPage());
+				
+			}
+			else{
+				return badRequest(authenticationPage.render());
+			}
+		}
 		else{
 			return badRequest(authenticationPage.render());
 		}
 	}
     
+    //Logout method
+    public static Result logout(){
+		 session().clear();
+		 return redirect(routes.Application.frontPage());
+	 }
     
+    //Checks whether there is an user loged in or not
+    public static boolean sessionExists(){
+    	String user = session("login");
+    	
+		 if(user==null){return false;} // Returns false if there is no user loged in
+		 
+		 else{return true;}// Returns true if there is an user loged in
+    }
     
     //Displays Article Manager (Temporary)
     public static Result articlesManager(){
-    	return ok(articles.render(Article.all()));
+    	return ok(articles.render(Article.all(),sessionExists()));
     }
-    
     
     
     /* Temporary User Management
@@ -67,9 +90,8 @@ public class Application extends Controller {
 		 Form<User> userForm = Form.form(User.class).bindFromRequest();  
 		 if(!userForm.hasErrors()){
 			 User it = userForm.get();
-			 
 			 User.create(it);  
-		 }  
+		 }
 		 return userManager();  
 	 }
     
@@ -78,8 +100,4 @@ public class Application extends Controller {
 		 return redirect(routes.Application.userManager());
 	 }
     
-    
-    
-    
-
 }

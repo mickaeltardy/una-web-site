@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(logedIn : Boolean)(content: Html)
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,12 +7,30 @@
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     <link rel="icon" type="image/png" href="@routes.Assets.at("images/options.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javacript"></script>
+	<script>
+		function Log(logedIn){
+		if(logedIn){
+			document.getElementById("LoginLink").href = "logout";
+			document.getElementById("LoginLink").innerHTML = "Logout";
+			document.getElementById("LoginLink").id="LogoutLink";
+			document.getElementById("LogoutLink").style.display="block";
+		}
+		else{
+			document.getElementById("LoginLink").href = "authenticate";
+			document.getElementById("LoginLink").innerHTML = "Login";
+			document.getElementById("LoginLink").style.display="block";
+		}
+		}
+	</script>
   </head>
-  <body>
-  
+  <body onload="Log(@logedIn)">
+	
 	<!-- Top Banner -->
 	
 	<!-- Menus -->
+	<p>
+		<a id="LoginLink" style="display:none">Login</a>
+	</p>
 	
     @content
 	

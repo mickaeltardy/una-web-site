@@ -8,6 +8,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 @MongoCollection(name="articles")
 public class Article{
+	
 	@Id
 	@ObjectId
 	public String id;

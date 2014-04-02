@@ -1,9 +1,7 @@
-@mainTemplate("Accueil"){
+@(logedIn : Boolean)
+@mainTemplate("Accueil")(logedIn){
 
 	<h1>Bienvenue sur le site de l'UNA</h1>
-	<dl>
-		<a id"LoginLink" href="authenticate">Login</a>
-	</dl>
 	<dl>
 		<a id"UsersLink" href="userManagement">Users</a>
 	</dl>

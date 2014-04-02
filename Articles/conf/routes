@@ -12,6 +12,8 @@ GET		/show				controllers.Application.show()
 
 GET 	/authenticate		controllers.Application.authenticationPage()
 
+GET		/logout				controllers.Application.logout()
+
 GET 	/UNA				controllers.Application.frontPage()
 
 GET		/articles			controllers.Application.articlesManager()
