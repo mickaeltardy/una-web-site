@@ -27,6 +27,9 @@ public class User{
 	//Specific Data
 	public String role; // = "Visitor" or "Member" or "Supervisor" or "Admin" (for now)
 	
+	//Article List
+	public ArrayList<Article> hisArticles;
+	
 	private static JacksonDBCollection<User, String> coll = MongoDB.getCollection("users", User.class, String.class);
 	
 	
@@ -73,6 +76,22 @@ public class User{
 		
 		public String getPassw(){
 			return passw;
+		}
+		
+		//Not working at the time...
+		//The problem is probably that I should modificate the attribute directly in the database
+		public void addArticle(Article article){
+			
+			if(!(hisArticles==null)){
+				hisArticles.add(article);
+			}
+			else{
+				hisArticles = new ArrayList<Article>();
+				hisArticles.add(article);
+			}
+			for(Article x : hisArticles){
+				System.out.println(x.getName());
+			}
 		}
 		
 	

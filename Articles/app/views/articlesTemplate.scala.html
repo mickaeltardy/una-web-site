@@ -1,6 +1,6 @@
 @(article: Article)
 <html>
-	<h2 id="articleHeader" class="articleHeader">@article.name, @article.author.name, @article.publicationDate</h2>
+	<h2 id="articleHeader" class="articleHeader">@article.name, @article.author.name, @article.author.role, @article.publicationDate</h2>
 	
 	<br />
 	
@@ -13,5 +13,9 @@
 	<p id="articleStatus" class="articleStatus">
 		@article.status
 	</p>
+	
+	<form action="@routes.Application.deleteArticle(article.id)" method="POST">
+		<button type="submit">Delete Article</button>
+	</form>
 	
 </html>

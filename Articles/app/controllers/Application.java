@@ -3,21 +3,13 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import play.data.*;
+import java.util.Date;
 import views.html.*;
 import models.*;
 
 public class Application extends Controller {
 
-    public static Result index() {
-        return ok(index.render("Your new application is ready."));
-    }
-    
-    public static Result show() {
-    	return ok(show.render("Articles","Coucou"));
-    }
-    
-    
-  //Displays the front page
+    //Displays the front page
     public static Result frontPage(){  
 		 return ok(frontPage.render(sessionExists()));
 	 }
@@ -71,10 +63,46 @@ public class Application extends Controller {
 		 else{return true;}// Returns true if there is an user loged in
     }
     
+    /* Article Management
+     * 
+     */
+    
     //Displays Article Manager (Temporary)
     public static Result articlesManager(){
     	return ok(articles.render(Article.all(),sessionExists()));
     }
+    
+    //Displays New Article Page
+    public static Result newArticlePage(){
+    	//@param: Passes to the HTML page the User loged in
+    	//and 'true' because there is a User loged in if we get to this point
+    	return ok(newArticlePage.render(User.getByLogin(session("login")),true));
+    }
+    
+    public  static  Result createArticle(){
+		 Form<Article> articleForm = Form.form(Article.class).bindFromRequest();  
+		 if(!articleForm.hasErrors()){
+			 //Collects data from the form
+			 Article art = articleForm.get();
+			 
+			 //Set author and date fields
+			 art.setAuthor(User.getByLogin(session("login")));
+			 Date date = new Date(); // Gets current date
+			 art.setPublicationDate(date);
+			 
+			 //Adds the Article to the database and also links it to its author
+			 Article.create(art);
+			 User.getByLogin(session("login")).addArticle(art); //This precise line not working at the time
+		 }
+		 return redirect(routes.Application.articlesManager());  
+	}
+    
+    public static Result deleteArticle(String id){
+		 Article.delete(id);
+		 return redirect(routes.Application.articlesManager());
+	 }
+    
+    
     
     
     /* Temporary User Management

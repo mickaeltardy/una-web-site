@@ -2,26 +2,27 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                           controllers.Application.index()
-
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
-GET		/show				controllers.Application.show()
+GET 	/authenticate			controllers.Application.authenticationPage()
 
-GET 	/authenticate		controllers.Application.authenticationPage()
+GET		/logout					controllers.Application.logout()
 
-GET		/logout				controllers.Application.logout()
+GET 	/UNA					controllers.Application.frontPage()
 
-GET 	/UNA				controllers.Application.frontPage()
+GET		/articles				controllers.Application.articlesManager()
 
-GET		/articles			controllers.Application.articlesManager()
+GET		/newArticle				controllers.Application.newArticlePage()
 
-GET		/userManagement		controllers.Application.userManager()
+GET		/userManagement			controllers.Application.userManager()
 
-POST	/userMan			controllers.Application.insertUser()
+POST	/userMan				controllers.Application.insertUser()
 
-POST	/userMan/:id/		controllers.Application.removeUser(id: String)
+POST	/userMan/:id/			controllers.Application.removeUser(id: String)
 
-POST	/authentication		controllers.Application.authenticate()
+POST	/authentication			controllers.Application.authenticate()
+
+POST	/createArticle			controllers.Application.createArticle()
+
+POST	/deleteArticle/:id/		controllers.Application.deleteArticle(id: String)

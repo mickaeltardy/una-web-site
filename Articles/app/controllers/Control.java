@@ -28,10 +28,8 @@ public class Control{
 				&&(userFittingLogin.getLogin().equals(user.getLogin()))
 				&&(userFittingLogin.getPassw().equals(user.getPassw()))){
 			ok = true;
-			System.out.println(userFittingLogin.getLogin());
 		}
 		
-		System.out.println(ok);
 		return ok;
 	}
 	
