@@ -18,7 +18,7 @@ public class Article{
 	public String name;
 	public Date publicationDate;
 	public String content;
-	public String theme;
+	public String tag;
 	public String status;
 	public User author;
 	
