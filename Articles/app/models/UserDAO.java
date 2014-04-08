@@ -35,15 +35,6 @@ private static JacksonDBCollection<User, String> coll = MongoDB.getCollection("u
 	
 	//Method to get a user by his login
 	public static User getByLogin(String loginEntered){
-		
-		//Loop running on all the registered users
-		for(User x : coll.find().toArray()){
-			
-			if(x.getLogin().equals(loginEntered)){
-				return x;
-			}
-		}
-		
-		return null;
+		return coll.findOne(DBQuery.is("login",loginEntered));
 	}
 }
