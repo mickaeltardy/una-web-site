@@ -69,14 +69,14 @@ public class Application extends Controller {
     
     //Displays Article Manager (Temporary)
     public static Result articlesManager(){
-    	return ok(articles.render(Article.all(),sessionExists()));
+    	return ok(articles.render(ArticleDAO.all(),sessionExists()));
     }
     
     //Displays New Article Page
     public static Result newArticlePage(){
     	//@param: Passes to the HTML page the User loged in
     	//and 'true' because there is a User loged in if we get to this point
-    	return ok(newArticlePage.render(User.getByLogin(session("login")),true));
+    	return ok(newArticlePage.render(UserDAO.getByLogin(session("login")),true));
     }
     
     public  static  Result createArticle(){
@@ -86,19 +86,18 @@ public class Application extends Controller {
 			 Article art = articleForm.get();
 			 
 			 //Set author and date fields
-			 art.setAuthor(User.getByLogin(session("login")));
+			 art.setAuthor(UserDAO.getByLogin(session("login")));
 			 Date date = new Date(); // Gets current date
 			 art.setPublicationDate(date);
 			 
 			 //Adds the Article to the database and also links it to its author
-			 Article.create(art);
-			 User.getByLogin(session("login")).addArticle(art); //This precise line not working at the time
+			 ArticleDAO.create(art);
 		 }
 		 return redirect(routes.Application.articlesManager());  
 	}
     
     public static Result deleteArticle(String id){
-		 Article.delete(id);
+		 ArticleDAO.delete(id);
 		 return redirect(routes.Application.articlesManager());
 	 }
     
@@ -111,20 +110,20 @@ public class Application extends Controller {
     
     //Displays User Manager
     public static Result userManager(){
-    	return ok(userManagement.render(User.all()));
+    	return ok(userManagement.render(UserDAO.all()));
     }
     
     public  static  Result insertUser(){
 		 Form<User> userForm = Form.form(User.class).bindFromRequest();  
 		 if(!userForm.hasErrors()){
 			 User it = userForm.get();
-			 User.create(it);  
+			 UserDAO.create(it);  
 		 }
 		 return userManager();  
 	 }
     
     public static Result removeUser(String id){
-		 User.delete(id);
+		 UserDAO.delete(id);
 		 return redirect(routes.Application.userManager());
 	 }
     

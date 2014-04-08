@@ -22,7 +22,7 @@ public class Control{
 	 * @result : Returns whether the user exists or not
 	 */
 	public boolean authenticate(User user){
-		User userFittingLogin = User.getByLogin(user.getLogin());
+		User userFittingLogin = UserDAO.getByLogin(user.getLogin());
 		
 		if((userFittingLogin!=null)
 				&&(userFittingLogin.getLogin().equals(user.getLogin()))
