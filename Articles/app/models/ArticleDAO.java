@@ -9,6 +9,11 @@ public class ArticleDAO{
 	
 	private static JacksonDBCollection<Article, String> coll = MongoDB.getCollection("articles", Article.class, String.class);
 
+	
+	/* Basic methods to handle DAO
+	 * 
+	 */
+	
 	// Method to collect all articles from DataBase
 	public static List<Article> all() {
 	    return coll.find().toArray();
@@ -25,4 +30,14 @@ public class ArticleDAO{
 	    if (article != null)
 	        coll.remove(article);
 	}
+	
+	
+	/* Methods more specific below
+	 * 
+	 */
+	
+	public static List<Article> all(User author){
+		return coll.find(DBQuery.is("author",author)).toArray();
+	}
+	
 }

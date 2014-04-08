@@ -69,7 +69,7 @@ public class Application extends Controller {
     
     //Displays Article Manager (Temporary)
     public static Result articlesManager(){
-    	return ok(articles.render(ArticleDAO.all(),sessionExists()));
+    	return ok(articles.render(ArticleDAO.all(UserDAO.getByLogin(session("login"))),sessionExists()));
     }
     
     //Displays New Article Page
