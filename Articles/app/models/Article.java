@@ -29,11 +29,19 @@ public class Article{
 		return name;
 	}
 	
+	public User getAuthor(){
+		return author;
+	}
+	
 	public void setAuthor(User user){
 		author = user;
 	}
 	
 	public void setPublicationDate(Date date){
 		publicationDate = date;
+	}
+	
+	public void setStatus(String status){
+		this.status = status;
 	}
 }

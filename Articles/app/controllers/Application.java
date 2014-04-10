@@ -79,7 +79,14 @@ public class Application extends Controller {
     	return ok(newArticlePage.render(UserDAO.getByLogin(session("login")),true));
     }
     
-    public  static  Result createArticle(){
+    //Displays the Modify Article Page
+    public static Result modifyArticlePage(String articleToBeModifiedId){
+    	//Same parameters as previously
+    	//But we had an argument containing the Article to be modified
+    	return ok(modifyArticlePage.render(UserDAO.getByLogin(session("login")),true,ArticleDAO.getById(articleToBeModifiedId)));
+    }
+    
+    public static Result createArticle(){
 		 Form<Article> articleForm = Form.form(Article.class).bindFromRequest();  
 		 if(!articleForm.hasErrors()){
 			 //Collects data from the form
@@ -89,12 +96,34 @@ public class Application extends Controller {
 			 art.setAuthor(UserDAO.getByLogin(session("login")));
 			 Date date = new Date(); // Gets current date
 			 art.setPublicationDate(date);
+			 art.setStatus("Checked");
 			 
-			 //Adds the Article to the database and also links it to its author
+			 //Adds the Article to the database
 			 ArticleDAO.create(art);
 		 }
 		 return redirect(routes.Application.articlesManager());  
 	}
+    
+    public static Result modifyArticle(String articleToBeModifiedId){
+    	 Form<Article> articleForm = Form.form(Article.class).bindFromRequest();  
+		 if(!articleForm.hasErrors()){
+			 //Collects data from the form
+			 Article art = articleForm.get();
+			 
+			 //Set author and date fields
+			 art.setAuthor(ArticleDAO.getById(articleToBeModifiedId).getAuthor());
+			 Date date = new Date(); // Gets current date
+			 art.setPublicationDate(date);
+			 art.setStatus("Modified by "+UserDAO.getByLogin(session("login")).getRole()+" "+UserDAO.getByLogin(session("login")).getName());
+			 
+			 //Deletes the previous Article
+			 ArticleDAO.delete(articleToBeModifiedId);
+			 
+			 //And adds the modified Article to the database
+			 ArticleDAO.create(art);
+		 }
+		 return redirect(routes.Application.articlesManager());  
+    }
     
     public static Result deleteArticle(String id){
 		 ArticleDAO.delete(id);

@@ -1,0 +1,30 @@
+@(user : User)(logedIn : Boolean)(article: Article)
+@mainTemplate("New Article")(logedIn){
+
+	<dl>
+		<a id"HomeLink" href="/UNA">Home Page</a>
+	</dl>
+	
+	<h1>Article Editor</h1>
+	
+	<form action="@routes.Application.modifyArticle(article.id)" method="POST">
+        <table>  
+      	  <tbody>  
+      	  <tr>  
+      	     <th>Article Name</th>
+			 <th>Tag</th>
+      	  </tr>  
+      	  <tr>  
+      	     <td><input  type="text"  size="20"  name="name"  value=@article.name></td>
+			 <td><input  type="text"  size="20"  name="tag"  value=@article.tag></td>
+      	  </tr>
+          </tbody>  
+        </table>
+		<p>Write your content</p>
+		<div>
+			<input  type="text" name="content" size="100" value=@article.content>
+		</div>
+		<button type="submit">Post</button>
+     </form>
+	
+}

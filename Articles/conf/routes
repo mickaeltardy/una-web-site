@@ -13,7 +13,9 @@ GET 	/UNA					controllers.Application.frontPage()
 
 GET		/articles				controllers.Application.articlesManager()
 
-GET		/newArticle				controllers.Application.newArticlePage()
+GET		/newArticlePage			controllers.Application.newArticlePage()
+
+GET		/modifyArticlePage/:id/	controllers.Application.modifyArticlePage(id: String)
 
 GET		/userManagement			controllers.Application.userManager()
 
@@ -24,5 +26,7 @@ POST	/userMan/:id/			controllers.Application.removeUser(id: String)
 POST	/authentication			controllers.Application.authenticate()
 
 POST	/createArticle			controllers.Application.createArticle()
+
+POST	/modifyArticle/:id/		controllers.Application.modifyArticle(id: String)
 
 POST	/deleteArticle/:id/		controllers.Application.deleteArticle(id: String)

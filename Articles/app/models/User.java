@@ -28,11 +28,20 @@ public class User{
 	public String role; // = "Visitor" or "Member" or "Supervisor" or "Admin" (for now)
 	
 	//Attribute Access methods
-		public String getLogin(){
-			return login;
-		}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public String getRole(){
+		return role;
+	}
+	
+	public String getLogin(){
+		return login;
+	}
 		
-		public String getPassw(){
-			return passw;
-		}
+	public String getPassw(){
+		return passw;
+	}
 }

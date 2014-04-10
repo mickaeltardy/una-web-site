@@ -36,8 +36,14 @@ public class ArticleDAO{
 	 * 
 	 */
 	
+	// Get all the Articles written by this specific User
 	public static List<Article> all(User author){
 		return coll.find(DBQuery.is("author",author)).toArray();
+	}
+	
+	//Get the Article corresponding ti the Id in argument
+	public static Article getById(String id){
+		return coll.findOneById(id);
 	}
 	
 }
