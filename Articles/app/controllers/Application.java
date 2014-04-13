@@ -126,11 +126,34 @@ public class Application extends Controller {
     }
     
     public static Result deleteArticle(String id){
-		 ArticleDAO.delete(id);
-		 return redirect(routes.Application.articlesManager());
-	 }
+    	CommentaryDAO.deleteArticleCommentaries(id);
+		ArticleDAO.delete(id);
+		return redirect(routes.Application.articlesManager());
+	}
     
     
+    /* Commentary Managemnt
+     * 
+     */
+    
+    public static Result addCommentary(String id){
+   	 	Form<Commentary> commentaryForm = Form.form(Commentary.class).bindFromRequest();  
+		if(!commentaryForm.hasErrors()){
+			 //Collects data from the form
+			 Commentary com = commentaryForm.get();
+			 
+			 //Set author, date and Article fields
+			 com.setAuthor(UserDAO.getByLogin(session("login")));
+			 Date date = new Date(); // Gets current date
+			 com.setPublicationDate(date);
+			 com.setArticleId(id);
+			 
+			 //Adds the commentary to the database
+			 CommentaryDAO.create(com);
+			 ArticleDAO.addCommentary(id,CommentaryDAO.getByDateAndAuthor(date, UserDAO.getByLogin(session("login"))).getId());
+		 }
+		 return redirect(routes.Application.articlesManager());  
+   }
     
     
     /* Temporary User Management

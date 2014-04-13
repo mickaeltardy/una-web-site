@@ -8,26 +8,23 @@ import play.modules.mongodb.jackson.MongoDB;
 import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-@MongoCollection(name="articles")
-public class Article{
+@MongoCollection(name="commentaries")
+public class Commentary{
 	
 	@Id
 	@ObjectId
 	public String id;
 	
-	public String name;
 	public Date publicationDate;
 	public String content;
-	public String tag;
-	public String status;
 	public User author;
-	public ArrayList<Commentary> commentaries = new ArrayList(100);
-	
+	public String articleId;
 	/* Attribute Access Methods
 	 * 
 	 */
-	public String getName(){
-		return name;
+	
+	public String getId(){
+		return id;
 	}
 	
 	public User getAuthor(){
@@ -42,13 +39,7 @@ public class Article{
 		publicationDate = date;
 	}
 	
-	public void setStatus(String status){
-		this.status = status;
+	public void setArticleId(String articleId){
+		this.articleId = articleId;
 	}
-	
-	//Particular method: allow to add a commentary to the attribute List
-	public void addCommentary(Commentary commentary){
-		commentaries.add(commentary);
-	}
-	
 }

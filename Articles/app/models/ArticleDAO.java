@@ -41,9 +41,16 @@ public class ArticleDAO{
 		return coll.find(DBQuery.is("author",author)).toArray();
 	}
 	
-	//Get the Article corresponding ti the Id in argument
+	//Get the Article corresponding to the Id in argument
 	public static Article getById(String id){
 		return coll.findOneById(id);
+	}
+	
+	//Particular method: allow to add a commentary to the attribute List
+	public static void addCommentary(String articleId, String commentaryId){
+		Article article = getById(articleId); //Create the Article which will be kept
+		article.addCommentary(CommentaryDAO.getById(commentaryId)); //Update the final Article commentaries
+		coll.update(getById(articleId),article); //Replace the existing Article by the final one in the database
 	}
 	
 }

@@ -30,3 +30,5 @@ POST	/createArticle			controllers.Application.createArticle()
 POST	/modifyArticle/:id/		controllers.Application.modifyArticle(id: String)
 
 POST	/deleteArticle/:id/		controllers.Application.deleteArticle(id: String)
+
+POST 	/addCommentary/:id/		controllers.Application.addCommentary(id: String)

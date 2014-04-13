@@ -25,5 +25,15 @@
 		<button type="submit">Modify Article</button>
 	</form>
 	
+	<!-- Allows to write and add Commentaries -->
+	<form action="@routes.Application.addCommentary(article.id)" method="POST">
+		<input type="content"  name="content"  placeholder="Write your commentary">
+		<button type="submit">Post commentary</button>
+	</form>
+	
+	@for(commentary <- article.commentaries){
+	@commentariesTemplate(commentary)
+	}
+	
 	
 </html>
