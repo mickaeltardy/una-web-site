@@ -26,12 +26,36 @@ public class Article{
 	/* Attribute Access Methods
 	 * 
 	 */
+	public String getId(){
+		return id;
+	}
+	
 	public String getName(){
 		return name;
 	}
 	
+	public String getContent(){
+		return content;
+	}
+	
+	public String getTag(){
+		return tag;
+	}
+	
 	public User getAuthor(){
 		return author;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public void setContent(String content){
+		this.content = content;
+	}
+	
+	public void setTag(String tag){
+		this.tag = tag;
 	}
 	
 	public void setAuthor(User user){
@@ -49,6 +73,20 @@ public class Article{
 	//Particular method: allow to add a commentary to the attribute List
 	public void addCommentary(Commentary commentary){
 		commentaries.add(commentary);
+	}
+	
+	//Particular method: allow to remove a commentary from the attribute List
+	public void removeCommentary(Commentary commentary){
+		String id = commentary.getId();
+		
+		//The remove List method does not work with the Commentary in arguemnt here. Therefore, I had to make a remove method from scratch.
+		//It goes throught the List searching for a Commentary fitting the given id. When it founds it, it removes the fitting Commentary from the List.
+		for(Commentary x : commentaries){
+			if(x.getId().equals(id)){
+				commentaries.remove(x);
+				break;
+			}
+		}
 	}
 	
 }

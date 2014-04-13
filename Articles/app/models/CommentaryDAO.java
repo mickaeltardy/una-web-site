@@ -60,7 +60,7 @@ public class CommentaryDAO{
 	}
 	
 	//Get the commentary fitting the specified date and author
-	//Necessary to be able to search for a commentary which was just added to teh database, without knowing its Id
+	//Necessary to be able to search for a commentary which was just added to the database, without knowing its Id
 	public static Commentary getByDateAndAuthor(Date date, User author){
 		return coll.findOne(DBQuery.and(DBQuery.is("publicationDate",date), DBQuery.is("author",author)));
 	}

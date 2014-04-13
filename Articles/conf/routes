@@ -32,3 +32,7 @@ POST	/modifyArticle/:id/		controllers.Application.modifyArticle(id: String)
 POST	/deleteArticle/:id/		controllers.Application.deleteArticle(id: String)
 
 POST 	/addCommentary/:id/		controllers.Application.addCommentary(id: String)
+
+POST	/modifyCommentary/:id/	controllers.Application.modifyCommentary(id: String)
+
+POST	/deleteCommentary/:id/	controllers.Application.deleteCommentary(id: String)

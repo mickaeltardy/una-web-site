@@ -9,6 +9,25 @@
 		@commentary.content
 	</p>
 	
+	<p id="commentaryStatus" class="commentaryStatus">
+		@commentary.status
+	</p>
+	
+	<!-- Allows to delete Commentaries -->
+	<form action="@routes.Application.deleteCommentary(commentary.id)" method="POST">
+		<button type="submit">Delete Comment</button>
+	</form>
+	
+	<!-- Allows to modify Commentaries -->
+	<button onclick="displayCommentEditor()">Modify Comment</button>
+	
+	<form action="@routes.Application.modifyCommentary(commentary.id)" method="POST">
+		<div id="commentEditor" style="display:none">
+			<input type="content"  name="content"  value=@commentary.content>
+			<button type="submit">Post Modified Comment</button>
+		</div>
+	</form>
+	
 	<br />
 	
 </html>

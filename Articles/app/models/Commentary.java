@@ -17,6 +17,7 @@ public class Commentary{
 	
 	public Date publicationDate;
 	public String content;
+	public String status;
 	public User author;
 	public String articleId;
 	/* Attribute Access Methods
@@ -31,12 +32,32 @@ public class Commentary{
 		return author;
 	}
 	
+	public Date getPublicationDate(){
+		return publicationDate;
+	}
+	
+	public String getContent(){
+		return content;
+	}
+	
+	public String getArticleId(){
+		return articleId;
+	}
+	
 	public void setAuthor(User user){
 		author = user;
 	}
 	
 	public void setPublicationDate(Date date){
 		publicationDate = date;
+	}
+	
+	public void setContent(String content){
+		this.content = content;
+	}
+	
+	public void setStatus(String status){
+		this.status = status;
 	}
 	
 	public void setArticleId(String articleId){

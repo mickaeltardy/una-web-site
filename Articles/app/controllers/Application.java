@@ -109,18 +109,15 @@ public class Application extends Controller {
 		 if(!articleForm.hasErrors()){
 			 //Collects data from the form
 			 Article art = articleForm.get();
+			 Article articleToBeModified = ArticleDAO.getById(articleToBeModifiedId);
 			 
-			 //Set author and date fields
-			 art.setAuthor(ArticleDAO.getById(articleToBeModifiedId).getAuthor());
-			 Date date = new Date(); // Gets current date
-			 art.setPublicationDate(date);
-			 art.setStatus("Modified by "+UserDAO.getByLogin(session("login")).getRole()+" "+UserDAO.getByLogin(session("login")).getName());
+			 //Sets all the changed fields
+			 articleToBeModified.setName(art.getName());
+			 articleToBeModified.setContent(art.getContent());
+			 articleToBeModified.setTag(art.getTag());
+			 articleToBeModified.setStatus("Modified by "+UserDAO.getByLogin(session("login")).getRole()+" "+UserDAO.getByLogin(session("login")).getName());
 			 
-			 //Deletes the previous Article
-			 ArticleDAO.delete(articleToBeModifiedId);
-			 
-			 //And adds the modified Article to the database
-			 ArticleDAO.create(art);
+			 ArticleDAO.updateArticle(articleToBeModified);
 		 }
 		 return redirect(routes.Application.articlesManager());  
     }
@@ -146,6 +143,7 @@ public class Application extends Controller {
 			 com.setAuthor(UserDAO.getByLogin(session("login")));
 			 Date date = new Date(); // Gets current date
 			 com.setPublicationDate(date);
+			 com.setStatus("");
 			 com.setArticleId(id);
 			 
 			 //Adds the commentary to the database
@@ -154,11 +152,38 @@ public class Application extends Controller {
 		 }
 		 return redirect(routes.Application.articlesManager());  
    }
+
+   public static Result modifyCommentary(String id){
+	   Form<Commentary> commentaryForm = Form.form(Commentary.class).bindFromRequest();  
+	   if(!commentaryForm.hasErrors()){
+		   //Collects data from the form
+		   Commentary comForm = commentaryForm.get();
+		   //Collects data from the original Commentary
+		   Commentary comOld = CommentaryDAO.getById(id);
+		   
+		   //Updates fields that have changed
+		   comOld.setContent(comForm.getContent());
+		   comOld.setStatus("Modified");
+		   
+		   //Removes the old Commentary
+		   deleteCommentary(id);
+		   
+		   //Adds the updated one
+		   CommentaryDAO.create(comOld);
+		   ArticleDAO.addCommentary(comOld.getArticleId(),CommentaryDAO.getByDateAndAuthor(comOld.getPublicationDate(), comOld.getAuthor()).getId());
+	   }
+	   return redirect(routes.Application.articlesManager());
+   }
     
+   public static Result deleteCommentary(String id){
+    	ArticleDAO.removeCommentary(CommentaryDAO.getById(id).getArticleId(),id);
+		CommentaryDAO.delete(id);
+		return redirect(routes.Application.articlesManager());
+   }
     
-    /* Temporary User Management
-     * 
-     */
+   /* Temporary User Management
+    * 
+    */
     
     //Displays User Manager
     public static Result userManager(){
