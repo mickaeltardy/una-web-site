@@ -44,4 +44,8 @@ public class User{
 	public String getPassw(){
 		return passw;
 	}
+	
+	public void setPassw(String passw){
+		this.passw = passw;
+	}
 }

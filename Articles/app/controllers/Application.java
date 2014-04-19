@@ -194,6 +194,7 @@ public class Application extends Controller {
 		 Form<User> userForm = Form.form(User.class).bindFromRequest();  
 		 if(!userForm.hasErrors()){
 			 User it = userForm.get();
+			 it.setPassw(Md5.encode(it.getPassw()));
 			 UserDAO.create(it);  
 		 }
 		 return userManager();  

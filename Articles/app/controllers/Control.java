@@ -26,7 +26,7 @@ public class Control{
 		
 		if((userFittingLogin!=null)
 				&&(userFittingLogin.getLogin().equals(user.getLogin()))
-				&&(userFittingLogin.getPassw().equals(user.getPassw()))){
+				&&(userFittingLogin.getPassw().equals(Md5.encode(user.getPassw())))){
 			ok = true;
 		}
 		
