@@ -23,7 +23,7 @@
 	
 	<form action="@routes.Application.modifyCommentary(commentary.id)" method="POST">
 		<div id="commentEditor" style="display:none">
-			<input type="content"  name="content"  value=@commentary.content>
+			<textarea id="commentaryContentEditor" name="content" rows="3" cols="30"  value=@commentary.content></textarea>
 			<button type="submit">Post Modified Comment</button>
 		</div>
 	</form>

@@ -5,7 +5,7 @@
 	<br />
 	
 	<p id="articleContent" class="articleContent">
-		@article.content
+		@Html(article.content)
 	</p>
 	
 	<br />
@@ -27,7 +27,7 @@
 	
 	<!-- Allows to write and add Commentaries -->
 	<form action="@routes.Application.addCommentary(article.id)" method="POST">
-		<input type="content"  name="content"  placeholder="Write your commentary">
+		<textarea id="commentaryContentEditor" name="content" rows="3" cols="30"  placeholder="Write your commentary"></textarea>
 		<button type="submit">Post commentary</button>
 	</form>
 	

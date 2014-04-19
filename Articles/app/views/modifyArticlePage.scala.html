@@ -7,7 +7,7 @@
 	
 	<h1>Article Editor</h1>
 	
-	<form action="@routes.Application.modifyArticle(article.id)" method="POST">
+	<form id="editor" action="@routes.Application.modifyArticle(article.id)" method="POST">
         <table>  
       	  <tbody>  
       	  <tr>  
@@ -22,7 +22,7 @@
         </table>
 		<p>Write your content</p>
 		<div>
-			<input  type="text" name="content" size="100" value=@article.content>
+			<textarea id="articleContentEditor" name="content" rows="5" cols="50" value=@article.content></textarea>
 		</div>
 		<button type="submit">Post</button>
      </form>
