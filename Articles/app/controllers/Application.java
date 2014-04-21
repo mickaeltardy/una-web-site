@@ -21,7 +21,7 @@ public class Application extends Controller {
     
     //Displays authentication page
     public static Result authenticationPage(){
-    	return ok(authenticationPage.render());
+    	return ok(authenticationPage.render(false));
     }
     
     //Authentication method
@@ -40,11 +40,11 @@ public class Application extends Controller {
 				
 			}
 			else{
-				return badRequest(authenticationPage.render());
+				return badRequest(authenticationPage.render(true));
 			}
 		}
 		else{
-			return badRequest(authenticationPage.render());
+			return badRequest(authenticationPage.render(true));
 		}
 	}
     

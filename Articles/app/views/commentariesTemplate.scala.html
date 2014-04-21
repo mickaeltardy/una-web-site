@@ -19,11 +19,11 @@
 	</form>
 	
 	<!-- Allows to modify Commentaries -->
-	<button id="displayCommentEditorButton@commentary.id" class="modifyCommentButton" name="modifyCommentButton@commentary.author.name" onclick="displayCommentEditor(@commentary.id)" style="display:none">Modify Comment</button>
+	<button id="displayCommentEditorButton@commentary.id" class="modifyCommentButton" name="modifyCommentButton@commentary.author.name" onclick="displayCommentEditor('@commentary.id')" style="display:none">Modify Comment</button>
 	
 	<form id="modifyCommentaryForm@commentary.id" action="@routes.Application.modifyCommentary(commentary.id)" method="POST">
 		<div id="commentEditor@commentary.id" style="display:none">
-			<textarea id="commentaryContentEditor@commentary.id" name="content" rows="3" cols="30"  value=@commentary.content></textarea>
+			<textarea id="commentaryContentEditor@commentary.id" name="content" rows="3" cols="30">@commentary.content</textarea>
 			<button type="submit">Post Modified Comment</button>
 		</div>
 	</form>
