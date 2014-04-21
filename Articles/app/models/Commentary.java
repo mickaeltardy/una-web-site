@@ -16,6 +16,7 @@ public class Commentary{
 	public String id;
 	
 	public Date publicationDate;
+	public String dateToPrint;
 	public String content;
 	public String status;
 	public User author;
@@ -36,6 +37,10 @@ public class Commentary{
 		return publicationDate;
 	}
 	
+	public String getDateToPrint(){
+		return dateToPrint;
+	}
+	
 	public String getContent(){
 		return content;
 	}
@@ -50,6 +55,10 @@ public class Commentary{
 	
 	public void setPublicationDate(Date date){
 		publicationDate = date;
+	}
+	
+	public void setDateToPrint(String dateToPrint){
+		this.dateToPrint = dateToPrint;
 	}
 	
 	public void setContent(String content){

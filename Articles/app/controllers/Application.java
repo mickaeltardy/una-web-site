@@ -95,6 +95,7 @@ public class Application extends Controller {
 			 //Set author and date fields
 			 art.setAuthor(UserDAO.getByLogin(session("login")));
 			 Date date = new Date(); // Gets current date
+			 art.setDateToPrint(DateConverter.dateToPrint(date)); //Converts date to ideal display
 			 art.setPublicationDate(date);
 			 art.setStatus("Checked");
 			 
@@ -142,6 +143,7 @@ public class Application extends Controller {
 			 //Set author, date and Article fields
 			 com.setAuthor(UserDAO.getByLogin(session("login")));
 			 Date date = new Date(); // Gets current date
+			 com.setDateToPrint(DateConverter.dateToPrint(date)); //Converts date to ideal display
 			 com.setPublicationDate(date);
 			 com.setStatus("");
 			 com.setArticleId(id);

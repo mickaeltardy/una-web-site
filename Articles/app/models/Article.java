@@ -17,6 +17,7 @@ public class Article{
 	
 	public String name;
 	public Date publicationDate;
+	public String dateToPrint;
 	public String content;
 	public String tag;
 	public String status;
@@ -32,6 +33,10 @@ public class Article{
 	
 	public String getName(){
 		return name;
+	}
+	
+	public String getDateToPrint(){
+		return dateToPrint;
 	}
 	
 	public String getContent(){
@@ -64,6 +69,10 @@ public class Article{
 	
 	public void setPublicationDate(Date date){
 		publicationDate = date;
+	}
+	
+	public void setDateToPrint(String dateToPrint){
+		this.dateToPrint = dateToPrint;
 	}
 	
 	public void setStatus(String status){
