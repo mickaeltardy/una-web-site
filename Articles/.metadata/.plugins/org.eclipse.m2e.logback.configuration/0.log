@@ -581,3 +581,5 @@ java.lang.NullPointerException: null
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591) [org.eclipse.equinox.launcher_1.3.0.v20130327-1440.jar:na]
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1450) [org.eclipse.equinox.launcher_1.3.0.v20130327-1440.jar:na]
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1426) [org.eclipse.equinox.launcher_1.3.0.v20130327-1440.jar:na]
+2014-04-20 20:29:49,730 [main] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2014-04-21 11:34:48,786 [main] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8

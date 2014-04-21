@@ -69,21 +69,21 @@ public class Application extends Controller {
     
     //Displays Article Manager (Temporary)
     public static Result articlesManager(){
-    	return ok(articles.render(ArticleDAO.all(UserDAO.getByLogin(session("login"))),sessionExists()));
+    	return ok(articles.render(ArticleDAO.all(UserDAO.getByLogin(session("login"))),sessionExists(), UserDAO.getByLogin(session("login")).getRole(), UserDAO.getByLogin(session("login")).getName()));
     }
     
     //Displays New Article Page
     public static Result newArticlePage(){
     	//@param: Passes to the HTML page the User loged in
     	//and 'true' because there is a User loged in if we get to this point
-    	return ok(newArticlePage.render(UserDAO.getByLogin(session("login")),true));
+    	return ok(newArticlePage.render(true, UserDAO.getByLogin(session("login")).getRole(), UserDAO.getByLogin(session("login")).getName()));
     }
     
     //Displays the Modify Article Page
     public static Result modifyArticlePage(String articleToBeModifiedId){
     	//Same parameters as previously
     	//But we had an argument containing the Article to be modified
-    	return ok(modifyArticlePage.render(UserDAO.getByLogin(session("login")),true,ArticleDAO.getById(articleToBeModifiedId)));
+    	return ok(modifyArticlePage.render(true, ArticleDAO.getById(articleToBeModifiedId), UserDAO.getByLogin(session("login")).getRole(), UserDAO.getByLogin(session("login")).getName()));
     }
     
     public static Result createArticle(){

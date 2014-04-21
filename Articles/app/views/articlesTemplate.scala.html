@@ -1,34 +1,36 @@
 @(article: Article)
 <html>
-	<h2 id="articleHeader" class="articleHeader">@article.name, @article.author.name, @article.author.role, @article.publicationDate</h2>
+	<h2 id="articleHeader@article.name" class="articleHeader">@article.name, @article.author.name, @article.author.role, @article.publicationDate</h2>
 	
 	<br />
 	
-	<p id="articleContent" class="articleContent">
+	<p id="articleContent@article.name" class="articleContent">
 		@Html(article.content)
 	</p>
 	
 	<br />
 	
-	<p id="articleStatus" class="articleStatus">
+	<p id="articleStatus@article.name" class="articleStatus">
 		@article.status
 	</p>
 	
 	
 	<!-- Allows to delete Articles -->
-	<form action="@routes.Application.deleteArticle(article.id)" method="POST">
-		<button type="submit">Delete Article</button>
+	<form id="deleteForm@article.name" action="@routes.Application.deleteArticle(article.id)" method="POST">
+		<button id="deleteArticleButton@article.name" class="deleteArticleButton" name="deleteArticleButton@article.author.name" type="submit" style="display:none">Delete Article</button>
 	</form>
 	
 	<!-- Allows to modify Articles -->
-	<form action="@routes.Application.modifyArticlePage(article.id)" method="GET">
-		<button type="submit">Modify Article</button>
+	<form id="modifyForm@article.name" action="@routes.Application.modifyArticlePage(article.id)" method="GET">
+		<button id="modifyArticleButton@article.name" class="modifyArticleButton" name="modifyArticleButton@article.author.name" type="submit" style="display:none">Modify Article</button>
 	</form>
 	
 	<!-- Allows to write and add Commentaries -->
-	<form action="@routes.Application.addCommentary(article.id)" method="POST">
-		<textarea id="commentaryContentEditor" name="content" rows="3" cols="30"  placeholder="Write your commentary"></textarea>
-		<button type="submit">Post commentary</button>
+	<form id="articleEditorForm@article.name" action="@routes.Application.addCommentary(article.id)" method="POST">
+		<div id="commentaryEditor@article.name" name="commentaryEditor" style="display:none">
+			<textarea id="commentaryContentEditor@article.name" name="content" rows="3" cols="30"  placeholder="Write your commentary"></textarea>
+			<button id="PostCommentaryButton@article.name" type="submit">Post commentary</button>
+		</div>
 	</form>
 	
 	@for(commentary <- article.commentaries){

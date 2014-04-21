@@ -1,12 +1,12 @@
-@(listeArticles : List[Article])(logedIn : Boolean)
-@mainTemplate("Articles")(logedIn){
+@(listeArticles: List[Article])(logedIn: Boolean)(role: String)(name: String)
+@mainTemplate("Articles")(logedIn)(role)(name){
 
 	<h1>Articles Manager</h1>
 	<dl>
-		<a id"HomeLink" href="/UNA">Home Page</a>
+		<a id="HomeLink" href="/UNA">Home Page</a>
 	</dl>
 	<dl>
-		<a id"WriteNewArticle" href="/newArticlePage">New Article</a>
+		<a id="WriteNewArticle" href="/newArticlePage">New Article</a>
 	</dl>
 	
 	@for(article <- listeArticles){

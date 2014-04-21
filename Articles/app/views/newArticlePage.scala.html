@@ -1,5 +1,5 @@
-@(user : User)(logedIn : Boolean)
-@mainTemplate("New Article")(logedIn){
+@(logedIn: Boolean)(role: String)(name: String)
+@mainTemplate("New Article")(logedIn)(role)(name){
 
 	<dl>
 		<a id"HomeLink" href="/UNA">Home Page</a>

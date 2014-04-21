@@ -1,4 +1,4 @@
-@(title: String)(logedIn : Boolean)(content: Html)
+@(title: String)(logedIn: Boolean)(role: String)(name: String)(content: Html)
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,9 +8,10 @@
     <link rel="icon" type="image/png" href="@routes.Assets.at("images/options.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javacript"></script>
 	<script>
+		
+		<!-- This function allows to display either only the login link or both logout link and articles manager link -->
 		function display(logedIn){
 		
-		<!-- This function allow to display either only the login link or both logout link and articles manager link -->
 		
 		if(logedIn){
 			document.getElementById("LoginLink").href = "logout";
@@ -24,16 +25,63 @@
 		}
 		}
 		
-		<!-- This function manages 
-		function displayCommentEditor(){
-		if(document.getElementById("commentEditor").style.display=="none"){
-			document.getElementById("commentEditor").style.display="block";
+		<!-- This function allows to display action buttons according to what the User is allowed to do -->
+		function access(role,name){
+			if(role == 'Member'){
+				for(i=0;i<document.getElementsByName("commentaryEditor").length;i++){
+					document.getElementsByName("commentaryEditor")[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByName("deleteArticleButton"+name).length;i++){
+					document.getElementsByName("deleteArticleButton"+name)[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByName("modifyArticleButton"+name).length;i++){
+					document.getElementsByName("modifyArticleButton"+name)[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByName("deleteCommentButton"+name).length;i++){
+					document.getElementsByName("deleteCommentButton"+name)[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByName("modifyCommentButton"+name).length;i++){
+					document.getElementsByName("modifyCommentButton"+name)[i].style.display="block";
+				}
 			}
-		else{document.getElementById("commentEditor").style.display="none";}
+			else if((role=='Supervisor')||(role=='Admin')){
+				for(i=0;i<document.getElementsByName("commentaryEditor").length;i++){
+					document.getElementsByName("commentaryEditor")[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByClassName("deleteArticleButton").length;i++){
+					document.getElementsByClassName("deleteArticleButton")[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByClassName("modifyArticleButton").length;i++){
+					document.getElementsByClassName("modifyArticleButton")[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByClassName("deleteCommentButton").length;i++){
+					document.getElementsByClassName("deleteCommentButton")[i].style.display="block";
+				}
+				for(i=0;i<document.getElementsByClassName("modifyCommentButton").length;i++){
+					document.getElementsByClassName("modifyCommentButton")[i].style.display="block";
+				}
+			}
+		
 		}
+		
+		<!-- This function allows to display the content field when the user is willing to modify an article-->
+		function displayCommentEditor(id){
+		if(document.getElementById("commentEditor"+id).style.display=="none"){
+			document.getElementById("commentEditor"+id).style.display="block";
+			}
+		else{document.getElementById("commentEditor"+id).style.display="none";}
+		}
+		
+	</script>
+	<script type="text/javascript">
+		window.onload=function(e){
+		display(@logedIn);
+		access('@role','@name');
+		test();
+		};
 	</script>
   </head>
-  <body onload="display(@logedIn)">
+  <body>
 	
 	<!-- Top Banner -->
 	
@@ -48,6 +96,8 @@
     @content
 	
 	<!--bottom banner-->
+	
+	
 	
   </body>
 </html>

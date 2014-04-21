@@ -1,29 +1,29 @@
 @(commentary: Commentary)
 <html>
 
-	<h4 id="commentaryHeader" class="commentaryHeader">@commentary.author.name, @commentary.author.role, @commentary.publicationDate</h4>
+	<h4 id="commentaryHeader@commentary.id" class="commentaryHeader">@commentary.author.name, @commentary.author.role, @commentary.publicationDate</h4>
 	
 	<br />
 	
-	<p id="commentaryContent" class="commentaryContent">
+	<p id="commentaryContent@commentary.id" class="commentaryContent">
 		@commentary.content
 	</p>
 	
-	<p id="commentaryStatus" class="commentaryStatus">
+	<p id="commentaryStatus@commentary.id" class="commentaryStatus">
 		@commentary.status
 	</p>
 	
 	<!-- Allows to delete Commentaries -->
-	<form action="@routes.Application.deleteCommentary(commentary.id)" method="POST">
-		<button type="submit">Delete Comment</button>
+	<form id="deleteCommentaryForm@commentary.id" action="@routes.Application.deleteCommentary(commentary.id)" method="POST">
+		<button id="deleteCommentButton@commentary.id" class="deleteCommentButton" name="deleteCommentButton@commentary.author.name" type="submit" style="display:none">Delete Comment</button>
 	</form>
 	
 	<!-- Allows to modify Commentaries -->
-	<button onclick="displayCommentEditor()">Modify Comment</button>
+	<button id="displayCommentEditorButton@commentary.id" class="modifyCommentButton" name="modifyCommentButton@commentary.author.name" onclick="displayCommentEditor(@commentary.id)" style="display:none">Modify Comment</button>
 	
-	<form action="@routes.Application.modifyCommentary(commentary.id)" method="POST">
-		<div id="commentEditor" style="display:none">
-			<textarea id="commentaryContentEditor" name="content" rows="3" cols="30"  value=@commentary.content></textarea>
+	<form id="modifyCommentaryForm@commentary.id" action="@routes.Application.modifyCommentary(commentary.id)" method="POST">
+		<div id="commentEditor@commentary.id" style="display:none">
+			<textarea id="commentaryContentEditor@commentary.id" name="content" rows="3" cols="30"  value=@commentary.content></textarea>
 			<button type="submit">Post Modified Comment</button>
 		</div>
 	</form>
