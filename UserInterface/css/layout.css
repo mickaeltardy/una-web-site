@@ -1,0 +1,60 @@
+.col1, .col2, .col3, .col4, .cols {float:left}
+.col {
+	width: 700px;
+	float: right;
+	padding-right: 45px
+}
+.information{
+	padding-left: 50px;
+	width: 900px;
+	height: 1100px;
+	text-align: left;
+	color: #FFF;
+}
+.information2{
+	padding-left: 50px;
+	width: 900px;
+	height: 700px;
+	text-align: left;
+	color: #FFF;
+}
+	}
+.col1 {padding-left:50px;width:280px}
+.col2 {
+	padding-left: 50px;
+	width: 500px
+}
+.col3 {width:266px;padding-left:30px}
+.col4 {width:277px;padding-left:30px}
+.cols {width:226px}
+/* index.html */
+#page1 .body1 {background:url(../images/fondo_negro.jpg) top repeat-x #fff}
+#page1 .body2 {background:url(../images/bg_top_img.jpg) top center no-repeat}
+#page1 h1 {padding:31px 0 0 217px}
+#page1 #search {padding:38px 50px 0 0}
+#page1 #menu {padding:32px 27px 0 0}
+#page1 h2 {padding:42px 0 21px 0}
+#page1 header {
+	padding-bottom: 33px;
+	color: #666666;
+}
+/* index-1.html */
+/* index-2.html */
+/* index-3.html */
+/* index-4.html */
+#page5 .cols {width:90px}
+/* index-5.html */
+/* index-6.html */
+
+.main2 {
+	margin: 0 auto;
+	width: 940px;
+	font-size: 12px;
+	height: 1500px;
+}
+.main3 {
+	margin: 0 auto;
+	width: 940px;
+	font-size: 12px;
+	height: 1100px;
+}
