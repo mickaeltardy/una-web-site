@@ -15,7 +15,7 @@ public class DateConverter{
 		Locale locale = Locale.getDefault();
 		
 		//Define final date format
-		SimpleDateFormat format = new SimpleDateFormat("EEE dd MM yyyy HH:mm:ss", locale);
+		SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy HH:mm", locale);
 		
 		//Creates a String containing the display defined above
 		String dateToPrint = format.format(date);

@@ -1,6 +1,11 @@
 @(article: Article)
 <html>
-	<h2 id="articleHeader@article.name" class="articleHeader">@article.name, @article.author.name, @article.author.role, @article.dateToPrint</h2>
+	<h2 id="articleHeader@article.name" class="articleHeader">
+		<span id="articleName@article.id" class="articleName">@article.name, </span>
+		<span id="articleAuthorName@article.id" class="articleAuthorName">@article.author.name, </span>
+		<span id="articleAuthorRole@article.id" class="articleAuthorRole">@article.author.role, </span>
+		<span id="articleDate@article.id" class="articleDate">@article.dateToPrint</span>
+	</h2>
 	
 	<br />
 	

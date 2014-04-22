@@ -1,7 +1,11 @@
 @(commentary: Commentary)
 <html>
 
-	<h4 id="commentaryHeader@commentary.id" class="commentaryHeader">@commentary.author.name, @commentary.author.role, @commentary.dateToPrint</h4>
+	<h4 id="commentaryHeader@commentary.id" class="commentaryHeader">
+		<span id="commentaryAuthorName@commentary.id" class="commentaryAuthorName">@commentary.author.name, </span>
+		<span id="commentaryAuthorRole@commentary.id" class="commentaryAuthorRole">@commentary.author.role, </span>
+		<span id="commentaryDate@commentary.id" class="commentaryDate">@commentary.dateToPrint</span>
+	</h4>
 	
 	<br />
 	
