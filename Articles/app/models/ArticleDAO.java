@@ -1,6 +1,7 @@
 package models;
 
 import java.util.*;
+import java.util.Date;
 import play.modules.mongodb.jackson.MongoDB;
 import net.vz.mongodb.jackson.*;
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -16,7 +17,7 @@ public class ArticleDAO{
 	
 	// Method to collect all articles from DataBase
 	public static List<Article> all() {
-	    return coll.find().toArray();
+	    return tri(coll.find().toArray());
 	}
 
 	// Method to add an article to the DataBase
@@ -36,9 +37,26 @@ public class ArticleDAO{
 	 * 
 	 */
 	
+	//Sorts out a List of Article according to the Article publicationDate
+	//Using Insertion Sort algorithm
+	public static List<Article> tri(List<Article> articleList){
+		Article intermediaire;
+		int j = 0;
+		for(int i=articleList.size()-2; i>=0; i--){
+			intermediaire = articleList.get(i);
+			j = i;
+			while((j<articleList.size()-1)&&(articleList.get(j+1).getPublicationDate().compareTo(intermediaire.getPublicationDate())>0)){
+				articleList.set(j, articleList.get(j+1));
+				j = j+1;
+			}
+			articleList.set(j, intermediaire);
+		}
+		return articleList;
+	}
+	
 	// Get all the Articles written by this specific User
 	public static List<Article> all(User author){
-		return coll.find(DBQuery.is("author",author)).toArray();
+		return tri(coll.find(DBQuery.is("author",author)).toArray());
 	}
 	
 	//Get the Article corresponding to the Id in argument

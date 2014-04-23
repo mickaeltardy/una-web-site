@@ -35,6 +35,10 @@ public class Article{
 		return name;
 	}
 	
+	public Date getPublicationDate(){
+		return publicationDate;
+	}
+	
 	public String getDateToPrint(){
 		return dateToPrint;
 	}
