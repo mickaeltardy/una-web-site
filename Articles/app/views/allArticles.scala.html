@@ -1,0 +1,13 @@
+@(listeArticles: List[Article])(logedIn: Boolean)(role: String)(name: String)
+@mainTemplate("Articles")(logedIn)(role)(name){
+
+	<h1>Articles Whole View</h1>
+	<dl>
+		<a id="HomeLink" href="/UNA">Home Page</a>
+	</dl>
+	
+	@for(article <- listeArticles){
+	@articlesTemplate(article)
+	}
+	
+}

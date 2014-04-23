@@ -67,7 +67,19 @@ public class Application extends Controller {
      * 
      */
     
-    //Displays Article Manager (Temporary)
+    //Displays all Articles
+    public static Result allArticlesPage(){
+    	//If an User is currently loged in, we will use its Role and Name attributes
+    	if(session("login")!=null){
+    		return ok(allArticles.render(ArticleDAO.all(),sessionExists(), UserDAO.getByLogin(session("login")).getRole(), UserDAO.getByLogin(session("login")).getName()));
+    	}
+    	//Otherwise, we will pass 'Visitor' and 'Visitor' by default
+    	else{
+    		return ok(allArticles.render(ArticleDAO.all(),sessionExists(), "Visitor", "Visitor"));
+    	}
+    }
+    
+    //Displays Article Manager
     public static Result articlesManager(){
     	return ok(articles.render(ArticleDAO.all(UserDAO.getByLogin(session("login"))),sessionExists(), UserDAO.getByLogin(session("login")).getRole(), UserDAO.getByLogin(session("login")).getName()));
     }
@@ -101,8 +113,8 @@ public class Application extends Controller {
 			 
 			 //Adds the Article to the database
 			 ArticleDAO.create(art);
-		 }
-		 return redirect(routes.Application.articlesManager());  
+		 }  
+		 return redirect(routes.Application.articlesManager());
 	}
     
     public static Result modifyArticle(String articleToBeModifiedId){
@@ -124,9 +136,10 @@ public class Application extends Controller {
     }
     
     public static Result deleteArticle(String id){
+    	String refererUrl = request().getHeader("referer");
     	CommentaryDAO.deleteArticleCommentaries(id);
 		ArticleDAO.delete(id);
-		return redirect(routes.Application.articlesManager());
+		return redirect(refererUrl);
 	}
     
     
@@ -135,6 +148,7 @@ public class Application extends Controller {
      */
     
     public static Result addCommentary(String id){
+    	String refererUrl = request().getHeader("referer");
    	 	Form<Commentary> commentaryForm = Form.form(Commentary.class).bindFromRequest();  
 		if(!commentaryForm.hasErrors()){
 			 //Collects data from the form
@@ -151,11 +165,12 @@ public class Application extends Controller {
 			 //Adds the commentary to the database
 			 CommentaryDAO.create(com);
 			 ArticleDAO.addCommentary(id,CommentaryDAO.getByDateAndAuthor(date, UserDAO.getByLogin(session("login"))).getId());
-		 }
-		 return redirect(routes.Application.articlesManager());  
+		}
+		return redirect(refererUrl);
    }
 
    public static Result modifyCommentary(String id){
+	   String refererUrl = request().getHeader("referer");
 	   Form<Commentary> commentaryForm = Form.form(Commentary.class).bindFromRequest();  
 	   if(!commentaryForm.hasErrors()){
 		   //Collects data from the form
@@ -174,13 +189,14 @@ public class Application extends Controller {
 		   CommentaryDAO.create(comOld);
 		   ArticleDAO.addCommentary(comOld.getArticleId(),CommentaryDAO.getByDateAndAuthor(comOld.getPublicationDate(), comOld.getAuthor()).getId());
 	   }
-	   return redirect(routes.Application.articlesManager());
+	   return redirect(refererUrl);
    }
     
    public static Result deleteCommentary(String id){
-    	ArticleDAO.removeCommentary(CommentaryDAO.getById(id).getArticleId(),id);
-		CommentaryDAO.delete(id);
-		return redirect(routes.Application.articlesManager());
+	   String refererUrl = request().getHeader("referer");
+	   ArticleDAO.removeCommentary(CommentaryDAO.getById(id).getArticleId(),id);
+	   CommentaryDAO.delete(id);
+	   return redirect(refererUrl);
    }
     
    /* Temporary User Management

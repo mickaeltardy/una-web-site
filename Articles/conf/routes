@@ -11,6 +11,8 @@ GET		/logout					controllers.Application.logout()
 
 GET 	/UNA					controllers.Application.frontPage()
 
+GET		/allArticles			controllers.Application.allArticlesPage()
+
 GET		/articles				controllers.Application.articlesManager()
 
 GET		/newArticlePage			controllers.Application.newArticlePage()
