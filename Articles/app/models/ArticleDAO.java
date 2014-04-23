@@ -17,7 +17,7 @@ public class ArticleDAO{
 	
 	// Method to collect all articles from DataBase
 	public static List<Article> all() {
-	    return tri(coll.find().toArray());
+	    return sort(coll.find().toArray());
 	}
 
 	// Method to add an article to the DataBase
@@ -39,7 +39,7 @@ public class ArticleDAO{
 	
 	//Sorts out a List of Article according to the Article publicationDate
 	//Using Insertion Sort algorithm
-	public static List<Article> tri(List<Article> articleList){
+	public static List<Article> sort(List<Article> articleList){
 		Article intermediaire;
 		int j = 0;
 		for(int i=articleList.size()-2; i>=0; i--){
@@ -56,7 +56,7 @@ public class ArticleDAO{
 	
 	// Get all the Articles written by this specific User
 	public static List<Article> all(User author){
-		return tri(coll.find(DBQuery.is("author",author)).toArray());
+		return sort(coll.find(DBQuery.is("author",author)).toArray());
 	}
 	
 	//Get the Article corresponding to the Id in argument
