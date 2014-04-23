@@ -1,0 +1,69 @@
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block}
+mark, rp, rt, ruby, summary, time {display:inline}
+/* Left & Right alignment */
+.left {float:left}
+.right {float:right}
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+	text-align: justify;
+	
+	}
+.wrapper2{
+	width:80%;
+	text-align: center;
+	}
+body {color:#CC0000; id:page1; border:0;font:14px Arial, Helvetica, sans-serif; background:#f2f2f2;}
+body{width:95%;margin:auto;min-width:250px;max-width:2000px;margin-top:20px; }
+.ic, .ic a {border:0;float:right;background:#fff;color:#f00;width:50%;line-height:10px;font-size:10px;margin:-220% 0 0 0;overflow:hidden;padding:0}
+.css3{border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;box-shadow:0 0 4px rgba(0, 0, 0, .4);-moz-box-shadow:0 0 4px rgba(0, 0, 0, .4);-webkit-box-shadow:0 0 4px rgba(0, 0, 0, .4);behavior:url(js/PIE.htc);position:relative}
+.main {
+	margin: 0 auto;
+	width: 940px;
+	font-size: 12px;}
+#menu {float:right;padding:10px 10px 0 0}
+#menu li {float:left;padding-left:1px}
+#menu li a {display:block;font-size:18px;color:#ffffff;line-height:50px;padding:0 22px;text-decoration:none;font-weight:normal}
+#menu li a:hover {
+	color: #0066FF
+}
+/* content */
+#content { width:100%;overflow:hidden;padding-bottom:35px}
+#content2 {width:100%;overflow:hidden;padding-bottom:35px}
+.pad_bot1 {padding-bottom:10px}
+.pad_bot2 {padding-bottom:25px}
+.pad_bot3 {padding-bottom:5px}
+.marg_right1 {margin-right:24px}f
+.pad {padding:0 19px}
+.pad_left1 {padding-left:58px}
+.list1{}
+.list1 a {color:#363636;padding-left:13px;background:url(../images/marker_1.gif) 0 5px no-repeat}
+.list2 li {padding-bottom:10px}
+.list2 li a {color:#363636;padding-left:26px;background:url(../images/marker_2.gif) 2px 1px no-repeat}
+.button {display:inline-block;text-decoration:none;font-size:19px;color:#182125;border:1px solid #c6cacc;line-height:40px;border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px;behavior:url(js/PIE.htc);position:relative}
+.button span {background:url(../images/button1_bg.gif) top repeat-x #eee;border:1px solid #fff;padding:0 20px;display:block;border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px;behavior:url(js/PIE.htc);position:relative}
+.button:hover {color:#fff}
+.button:hover span {background:#b2e1ff}
+.color1 {color:#008cdd}
+/* footer */
+footer {
+	height: 142px;
+	text-align: center
+}
+footer .pad {padding:0 0 0 28px}
+footer nav {background:url(../images/bg_box2.jpg) top center no-repeat;border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px;box-shadow:1px 1px 3px rgba(0, 0, 0, .5);-moz-box-shadow:1px 1px 3px rgba(0, 0, 0, .5);-webkit-box-shadow:1px 1px 3px rgba(0, 0, 0, .5);behavior:url(js/PIE.htc);position:relative;width:100%;overflow:hidden;margin-bottom:25px}
+#footer_menu {padding:0 43px}
+#footer_menu li {float:left;padding-right:1px}
+#footer_menu li a {font-size:18px;color:#fff;text-decoration:none;line-height:50px;padding:0 52px}
+#footer_menu li a:hover {color:#008cdd}
+/* forms */
+#ContactForm {margin-top:-4px;line-height:28px}
+#ContactForm .button {font-size:19px;color:#fff;border:0;line-height:29px;width:81px;text-align:center;background:url(../images/button2_bg.gif) top repeat-x #000}
+#ContactForm .button:hover {background:#008cdd}
+#ContactForm .textarea_box {min-height:232px;width:100%;overflow:hidden}
+#ContactForm .wrapper {min-height:35px}
+#ContactForm span {width:82px;float:left;font-weight:bold}
+#ContactForm a {margin-left:10px;float:right}
+#ContactForm .input {float:left;background:url(../images/input.gif) no-repeat;width:311px;height:17px;padding:6px;color:#182125;font:14px Arial, Helvetica, sans-serif}
+#ContactForm textarea {overflow:auto;float:left;background:url(../images/textarea.gif) no-repeat;width:416px;height:202px;padding:6px;color:#182125;font:14px Arial, Helvetica, sans-serif;margin:0}
